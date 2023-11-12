@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ibook/AppBloc/AppBlocs.dart';
+import 'package:ibook/page/onBoarding/bloc/welcome_bloc.dart';
 import 'package:ibook/page/onBoarding/welcome.dart';
 
 void main() {
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AppBlocs(),
+      create: (context) => WelcomeBloc(),
 
 
       child: ScreenUtilInit(

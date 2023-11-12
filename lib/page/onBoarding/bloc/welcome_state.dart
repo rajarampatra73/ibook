@@ -1,6 +1,10 @@
 part of 'welcome_bloc.dart';
 
-@immutable
-abstract class WelcomeState {}
+ class WelcomeState {
+  int page;
 
-class WelcomeInitial extends WelcomeState {}
+  WelcomeState({this.page = 0});
+}
+
+// class WelcomeInitial extends WelcomeState {
+// }
