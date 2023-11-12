@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
             create: (context) => WelcomeBloc(),
           ),
           BlocProvider(
-          //  lazy: false, // lazy = creation of the bloc as soon as possible
+            lazy: false, // lazy = creation of the bloc as soon as possible
             create: (context) => HomeBloc(),
           ),
         ],
@@ -32,6 +32,12 @@ class MyApp extends StatelessWidget {
           builder: (context, child) =>
            MaterialApp(
             debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              appBarTheme: AppBarTheme(
+                elevation: 0,
+                backgroundColor: Colors.white
+              )
+            ),
             home: Welcome(),
             routes:{
               "/home": (context) => HomeScreen(),
