@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-Widget buildTextField({String? hintText, String? textType , required String image}) {
+Widget buildTextField({String? hintText, String? textType , required String image,
+void Function(String value)? function
+}) {
   return Container(
     width: 325.w,
     height: 50.h,
@@ -22,6 +24,7 @@ Widget buildTextField({String? hintText, String? textType , required String imag
           width: 270.w,
           height: 50.h,
           child: TextField(
+            onChanged: (value)=>function!(value) ,
             keyboardType: TextInputType.multiline,
             decoration: InputDecoration(
                 hintText: textType!,

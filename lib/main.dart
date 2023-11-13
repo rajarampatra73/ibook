@@ -5,9 +5,16 @@ import 'package:ibook/page/homeScreen/HomeScreen.dart';
 import 'package:ibook/page/homeScreen/bloc/home_bloc.dart';
 import 'package:ibook/page/onBoarding/bloc/welcome_bloc.dart';
 import 'package:ibook/page/onBoarding/welcome.dart';
+import 'package:ibook/page/sign_in/bloc/sign_in_bloc.dart';
 import 'package:ibook/page/sign_in/signIn.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -20,13 +27,10 @@ class MyApp extends StatelessWidget {
     return
       MultiBlocProvider(
         providers: [
-          BlocProvider(
-            create: (context) => WelcomeBloc(),
-          ),
-          BlocProvider(
-            lazy: false, // lazy = creation of the bloc as soon as possible
-            create: (context) => HomeBloc(),
-          ),
+          // lazy = creation of the bloc as soon as possible
+          BlocProvider(create: (context) => WelcomeBloc(),),
+          BlocProvider(lazy: false, create: (context) => HomeBloc(),),
+          BlocProvider(create: (context) => SignInBloc(),),
         ],
         child: ScreenUtilInit(
           builder: (context, child) =>

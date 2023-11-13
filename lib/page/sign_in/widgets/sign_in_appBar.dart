@@ -26,9 +26,9 @@ AppBar buildAppBar() {
 }
 
 
-Widget buildLogInButton({String? text, Color? color}) {
+Widget buildLogInButton({String? text, Color? color, void Function()? function}) {
   return GestureDetector(
-    onTap: (){},
+    onTap:  ()=>function!(),
     child: Container(
       margin: EdgeInsets.only(left: 25.w,
       right: 25.w, top: 20.h),
