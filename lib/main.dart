@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ibook/page/bloc_provider.dart';
 import 'package:ibook/page/homeScreen/HomeScreen.dart';
-import 'package:ibook/page/homeScreen/bloc/home_bloc.dart';
-import 'package:ibook/page/onBoarding/bloc/welcome_bloc.dart';
 import 'package:ibook/page/onBoarding/welcome.dart';
-import 'package:ibook/page/sign_in/bloc/sign_in_bloc.dart';
+import 'package:ibook/page/register/register.dart';
 import 'package:ibook/page/sign_in/signIn.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -26,26 +25,26 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return
       MultiBlocProvider(
-        providers: [
-          // lazy = creation of the bloc as soon as possible
-          BlocProvider(create: (context) => WelcomeBloc(),),
-          BlocProvider(lazy: false, create: (context) => HomeBloc(),),
-          BlocProvider(create: (context) => SignInBloc(),),
-        ],
+        providers: AppBlocProviders.allBlocProviders,
         child: ScreenUtilInit(
           builder: (context, child) =>
            MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
-              appBarTheme: AppBarTheme(
+              appBarTheme: const AppBarTheme(
+                iconTheme: IconThemeData(
+                  color: Colors.black,
+                  
+                ),
                 elevation: 0,
                 backgroundColor: Colors.white
               )
             ),
-            home: Welcome(),
+            home: const Welcome(),
             routes:{
-              "/home": (context) => HomeScreen(),
-              "/signIn": (context) => SignIn(),
+              "/home": (context) => const HomeScreen(),
+              "/signIn": (context) => const SignIn(),
+              "/register": (context) => const Register(),
             },
           ),
         ),

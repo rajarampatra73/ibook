@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ibook/common/value/colores.dart';
 
-AppBar buildAppBar() {
+AppBar buildAppBar({required String  title}) {
   return AppBar(
     bottom: PreferredSize(
       preferredSize: Size.fromHeight(1.0),
@@ -12,16 +12,15 @@ AppBar buildAppBar() {
         height: 1.0,
       ),
     ),
-    title: Center(
-      child: Text(
-        "Log In",
+    title: Text(
+        title!,
         style: TextStyle(
           color: black ,
           fontSize: 16.sp,
           fontWeight: FontWeight.normal,
         ),
       ),
-    ),
+
   );
 }
 
